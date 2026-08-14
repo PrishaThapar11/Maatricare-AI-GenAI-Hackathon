@@ -5,6 +5,7 @@ import LanguageToggle from "../components/common/LanguageToggle";
 import AICard from "../components/common/AICard";
 import formatAIText from "../utils/temp";
 import AISkeleton from "../components/common/AISkeleton";
+import { API_BASE_URL } from "../config.js";
 
 function getRiskBadge(riskLevel = "") {
   const level = riskLevel.toLowerCase();
@@ -49,7 +50,7 @@ export default function RiskExplanation() {
       stopRef.current = false;
       const cleanedText = cleanTextForTTS(text);
 
-      const res = await fetch("http://localhost:5000/api/tts", {
+      const res = await fetch(`${API_BASE_URL}/api/tts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: cleanedText }),

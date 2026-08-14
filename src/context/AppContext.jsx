@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
+import { API_BASE_URL } from "../config.js";
 
 const AppContext = createContext();
 
@@ -15,7 +16,7 @@ export function AppProvider({ children }) {
 useEffect(() => {
   if (!user || !user.userId) return;
 
-  fetch(`http://localhost:5000/api/patients/${user.userId}`)
+  fetch(`${API_BASE_URL}/api/patients/${user.userId}`)
     .then((res) => {
       if (!res.ok) {
         throw new Error(`HTTP error ${res.status}`);
@@ -34,7 +35,7 @@ useEffect(() => {
 
 const addPatient = async (patient) => {
   // save to backend
-  await fetch("http://localhost:5000/api/patients", {
+  await fetch(`${API_BASE_URL}/api/patients`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(patient),

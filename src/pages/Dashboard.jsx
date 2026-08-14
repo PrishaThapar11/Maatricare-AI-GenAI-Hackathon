@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import LanguageToggle from "../components/common/LanguageToggle";
 import { calculateRisk } from "../utils/riskCalculator";
 import RiskBadge from "../components/RiskBadge";
+import { API_BASE_URL } from "../config.js";
 
 export default function Dashboard() {
     const {
@@ -63,7 +64,7 @@ const selectedPatient = selectedPatientId
 }
 
 
-      const response = await fetch("http://localhost:5000/api/risk", {
+      const response = await fetch(`${API_BASE_URL}/api/risk`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ patient, riskResult, language }),

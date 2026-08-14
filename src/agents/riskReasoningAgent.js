@@ -1,6 +1,7 @@
+import { API_BASE_URL } from "../config.js";
 export async function runRiskReasoningAgent({ patient, riskResult, language }) {
   try {
-    const response = await fetch("http://localhost:5000/api/risk", {
+    const response = await fetch(`${API_BASE_URL}/api/risk`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ patient, riskResult, language }),
